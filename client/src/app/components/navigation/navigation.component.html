@@ -1,0 +1,28 @@
+<nav class="grid grid-cols-10 bg-pink-900 py-1 text-white font-bold text-center">
+    <div class="col-span-2 grid grid-rows-2 m-auto text-xl">
+        <div>Fecha {{todayDate.toLocaleDateString()}} </div>
+        <div>Hora {{todayDate.toLocaleTimeString()}} </div>
+    </div>
+    <div class="col-span-2 m-auto">
+        <a routerLink="/details" routerLinkSActive="active">
+            <img class="w-16 h-16 invert" src="assets/IMG/iconMoneda.png">
+        </a>
+        ver ventas
+    </div>
+    <div class="col-span-2 m-auto">
+        <a routerLink="/orders" routerLinkSActive="active">
+            <img class="w-16 h-16 invert" src="assets/IMG/iconCarrito.png">
+        </a>
+        punto de venta
+    </div>
+    <div class="col-span-2 m-auto">
+        <a routerLink="/products" routerLinkSActive="active">
+            <img class="w-16 h-16 invert" src="assets/IMG/iconProductos.png">
+        </a>
+        ver producto
+    </div>
+    <div class="col-span-2 m-auto">
+        <img class="w-16 h-16 invert" src="assets/IMG/iconAdmin.png">
+        admin
+    </div>
+</nav>

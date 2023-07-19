@@ -1,0 +1,15 @@
+<div class="absolute text-white w-full h-full bg-black/50 grid top-28 left-0" *ngIf="isModalOpen">
+    <div class=" bg-red-950 border-2 border-amber-100 my-60 mx-60 grid grid-cols-5 text-center font-bold">
+        <p class="col-span-4 m-auto text-2xl">Filtrar Productos</p>
+        <button class="col-span-1" (click)="closeModal()">X</button>
+        <div class="col-span-5 grid grid-cols-2 overflow-auto text-md">
+            <div *ngFor="let category of categoriesList" class="grid grid-cols-2">
+                <p>{{category.nombre_categoria}}</p>
+                <input type="checkbox" (change)="filterSelected($event, category.id)"
+                    [checked]="categoriesFiltered.includes(category.id)">
+            </div>
+        </div>
+        <button class="col-span-5 m-auto bg-yellow-200 rounded-md border-2 border-black text-black w-40"
+            (click)="filterProducts()">Filtrar</button>
+    </div>
+</div>

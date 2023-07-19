@@ -1,0 +1,22 @@
+<div class="grid grid-rows-12">
+    <app-navigation class="row-span-1"></app-navigation>
+    <div class="row-span-1 text-5xl font-bold text-center">Menu Productos</div>
+    <div class="row-span-1 grid grid-cols-10 gap-x-5 my-4">
+        <a class="rounded-lg bg-lime-400 col-span-2 grid grid-cols-5 mx-14" [routerLink]="['/products/add']">
+            <p class="col-span-4 m-auto font-bold text-md">Nuevo Producto</p>
+            <img class="w-4 h-4 col-span-1 my-auto" src="assets/IMG/addBtn.svg">
+        </a>
+        <button class="text-2xl font-bold bg-red-500 text-center text-white w-28 h-8 border-2 border-black col-span-2"
+            (click)="openModal()">• • •</button>
+    </div>
+    <div class="row-span-8 grid grid-cols-8 grid-rows-8 gap-5">
+        <div *ngFor="let product of productsList | paginate: {itemsPerPage: 32, currentPage: page}">
+            <app-product-item [productData]="product" [inOrder]="false"></app-product-item>
+        </div>
+    </div>
+    <div class="row-span-1 mx-auto py-5">
+        <pagination-controls (pageChange)="page = $event" previousLabel="Previous" nextLabel="Next"
+            class=""></pagination-controls>
+    </div>
+</div>
+<app-filter-products-modal></app-filter-products-modal>

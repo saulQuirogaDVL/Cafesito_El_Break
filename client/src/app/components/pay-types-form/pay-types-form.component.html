@@ -1,0 +1,26 @@
+<div class="font-bold text-md text-center border-b-8 border-black">
+    <div class="grid grid-cols-6">
+        <label class="col-span-2">N° Orden:</label>
+        <label class="col-span-1">{{orderNumber.orden_actual}}</label>
+        <label class="col-span-2">Ordenes Totales:</label>
+        <label class="col-span-1">{{orderNumber.orden_dia}}</label>
+    </div>
+    <div class="grid grid-cols-12">
+        <label class="col-span-4">Tipo de Entrega:</label>
+        <input class="col-span-1 w-6 h-6" type="radio" name="entregaRadioBTN" (change)="deliverySelected(1)" checked>
+        <img class="col-span-1 w-8 h-8" src="./assets/IMG/iconMesa.png">
+        <label class="col-span-2">Para mesa</label>
+        <input class="col-span-1 w-6 h-6" type="radio" name="entregaRadioBTN" (change)="deliverySelected(2)">
+        <img class="col-span-1 w-8 h-8" src="./assets/IMG/iconLlevar.png">
+        <label class="col-span-2">Para llevar</label>
+    </div>
+    <div class="grid grid-cols-12">
+        <label class="col-span-4">Tipo de Pago:</label>
+        <input class="col-span-1 w-6 h-6" type="radio" name="pagoRadioBTN" (change)="paySelected(1)" checked>
+        <img class="col-span-1 w-8 h-8" src="./assets/IMG/iconEfectivo.png">
+        <label class="col-span-2">Efectivo</label>
+        <input class="col-span-1 w-6 h-6" type="radio" name="pagoRadioBTN" (change)="paySelected(2)">
+        <img class="col-span-1 w-8 h-8" src="./assets/IMG/iconTarjeta.png">
+        <label class="col-span-2">Tarjeta</label>
+    </div>
+</div>

@@ -1,0 +1,37 @@
+<app-navigation></app-navigation>
+<div
+    class="grid grid-rows-10 grid-cols-12 p-2 drop-shadow-2xl bg-red-950 mx-auto font-bold text-white gap-2 text-md w-3/6 mt-2 border-4 border-black rounded-md">
+    <p class="text-2xl text-center row-span-1 col-span-12">Detalles del producto</p>
+
+    <img [src]="photoSelected || product.imagen" class="row-span-1 col-span-12 rounded-full mx-auto w-28 h-28">
+
+    <p class="row-span-1 col-span-4">Nombre Producto: </p>
+    <input type="text" class="row-span-1 col-span-8 text-black pl-2" [(ngModel)]="product.nombre_producto">
+
+    <p class="row-span-1 col-span-4">Seleccionar Categoria: </p>
+    <select class="row-span-1 col-span-8 text-black pl-2" [(ngModel)]="categorySelected" *ngIf="!newCategory">
+        <option [value]="category.id" *ngFor="let category of categoriesList">
+            {{category.nombre_categoria}}</option>
+    </select>
+    <input type="text" class="row-span-1 col-span-8 text-black pl-2" *ngIf="newCategory"
+        placeholder="Ingrese la nueva categoria..." [(ngModel)]="nameNewCategory">
+
+    <p class="row-span-1 col-span-4">Nueva Categoria: </p>
+    <input type="checkbox" class="row-span-1 col-span-8" [(ngModel)]="newCategory">
+
+    <p class="row-span-1 col-span-4">Precio Producto: </p>
+    <input type="number" class="row-span-1 col-span-8 text-black pl-2" [(ngModel)]="product.precio">
+
+    <p class="row-span-1 col-span-4">Detalles Producto: </p>
+    <textarea maxlength="200" cols="20" rows="10" class="row-span-1 col-span-8 text-black pl-2 h-28"
+        [(ngModel)]="product.detalles_producto"></textarea>
+
+    <p class="row-span-1 col-span-4">Imagen Producto: </p>
+    <input type="file" class="row-span-1 col-span-8" (change)="captureNewImage($event)" accept="image/*">
+
+    <p class="row-span-1 col-span-4">Producto Habilitado: </p>
+    <input type="checkbox" class="row-span-1 col-span-8" [(ngModel)]="product.habilitado">
+
+    <button class="row-span-1 col-span-12 bg-yellow-200 rounded-md mx-auto w-20 text-black py-2 my-2"
+        (click)="edit?editProduct():saveProduct()">Guardar</button>
+</div>
