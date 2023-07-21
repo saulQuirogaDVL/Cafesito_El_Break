@@ -6,6 +6,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const morgan_1 = __importDefault(require("morgan"));
 const cors_1 = __importDefault(require("cors"));
+const path_1 = __importDefault(require("path"));
 const indexRoutes_1 = __importDefault(require("./routes/indexRoutes"));
 const productsRoutes_1 = __importDefault(require("./routes/productsRoutes"));
 const categoriesRoutes_1 = __importDefault(require("./routes/categoriesRoutes"));
@@ -34,6 +35,7 @@ class Server {
         this.app.use('/users', userRoutes_1.default);
         this.app.use('/login', loginRoutes_1.default);
         this.app.use('/orders', ordersRoutes_1.default);
+        this.app.use('/uploads', express_1.default.static(path_1.default.join('uploads')));
     }
     start() {
         this.app.listen(this.app.get('port'));

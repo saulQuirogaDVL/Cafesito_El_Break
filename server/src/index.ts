@@ -1,6 +1,7 @@
 import express, { Application } from 'express';
 import morgan from 'morgan';
 import cors from 'cors';
+import path from 'path';
 
 
 import indexRoutes from './routes/indexRoutes';
@@ -37,6 +38,7 @@ class Server {
         this.app.use('/users', usersRoutes);
         this.app.use('/login', loginRoutes);
         this.app.use('/orders', orderRoutes)
+        this.app.use('/uploads',express.static(path.join('uploads')))
     }
 
     start(): void {

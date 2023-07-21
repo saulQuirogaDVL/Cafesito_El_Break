@@ -24,7 +24,7 @@ export class MenuProductsComponent implements OnInit {
   constructor(private ProductsService: ProductsService, private CategoriesService: CategoriesService) { }
 
   getProducts() {
-    this.ProductsService.getProducts().subscribe(
+    this.ProductsService.getAllProducts().subscribe(
       {
         next: (res) => {
           this.productsList = res;

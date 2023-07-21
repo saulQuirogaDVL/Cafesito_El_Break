@@ -24,8 +24,7 @@ class ProductsController {
     }
 
     public async create(req: Request, res: Response): Promise<void> {
-        //await pool.query("INSERT INTO productos set ?", [req.body]);
-        console.log("si entro")
+        await pool.query("INSERT INTO productos set ?", [req.body]);
         res.json({ text: "Product Saved" })
     }
 

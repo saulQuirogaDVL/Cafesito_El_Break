@@ -12,7 +12,7 @@ class ProductsRoutes {
             cb(null, 'uploads/');
         },
         filename: function (req: any, file: any, cb: any) {
-            cb(null, Date.now() + '-' + file.originalname);
+            cb(null, file.originalname);
         },
     });
 

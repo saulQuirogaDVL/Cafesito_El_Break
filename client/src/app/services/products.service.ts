@@ -41,4 +41,9 @@ export class ProductsService {
   saveProduct(product: Product) {
     return this.http.post(`${this.API_URI}/`, product);
   }
+
+  editProduct(product: Product) {
+    return this.http.put(`${this.API_URI}/${product.id}`, product);
+  }
+
 }

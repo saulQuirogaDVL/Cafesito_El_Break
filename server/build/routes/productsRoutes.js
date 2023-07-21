@@ -12,7 +12,7 @@ class ProductsRoutes {
                 cb(null, 'uploads/');
             },
             filename: function (req, file, cb) {
-                cb(null, Date.now() + '-' + file.originalname);
+                cb(null, file.originalname);
             },
         });
         this.upload = multer({ storage: this.storage });

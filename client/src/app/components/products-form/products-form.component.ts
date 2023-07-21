@@ -1,8 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { DomSanitizer, SafeResourceUrl, SafeUrl } from '@angular/platform-browser';
-import { ActivatedRoute } from '@angular/router';
-import { Product } from 'src/app/models/products';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Category } from 'src/app/models/categories';
 import { CategoriesService } from 'src/app/services/categories.service';
 import { ProductsService } from 'src/app/services/products.service';
 
@@ -24,9 +24,13 @@ export class ProductsFormComponent implements OnInit {
     precio: 0,
     id_usuario: 1,
     detalles_producto: "",
-    imagen: "./assets/IMG/defaultComida.png",
+    imagen: "defaultComida.png",
     habilitado: true,
     fecha_creacion: new Date()
+  }
+
+  category: Category = {
+    nombre_Categoria: ""
   }
 
   edit: boolean = false;
@@ -34,7 +38,7 @@ export class ProductsFormComponent implements OnInit {
   fileCaptured!: any;
 
   constructor(private CategoriesService: CategoriesService, private ActivatedRoute: ActivatedRoute,
-    private ProductsService: ProductsService) { }
+    private ProductsService: ProductsService, private Router: Router) { }
 
   ngOnInit(): void {
     this.getAllCategories();
@@ -74,16 +78,59 @@ export class ProductsFormComponent implements OnInit {
       const file = inputElement.files[0];
       this.ProductsService.savePhoto(file).subscribe(
         responsePhoto => {
-          this.ProductsService.saveProduct(this.product).subscribe();
+          console.log(responsePhoto);
         },
         error => {
           console.error('Error al subir la imagen:', error);
         }
       );
     }
+
+    if (this.newCategory) {
+      this.category.nombre_Categoria = this.nameNewCategory.toUpperCase();
+
+      this.CategoriesService.saveCategory(this.category).subscribe(responseCategory => {
+        console.log(responseCategory)
+        this.product.id_categoria = this.categoriesList.length + 1;
+        this.ProductsService.saveProduct(this.product).subscribe(responseProduct => { console.log(responseProduct) });
+      })
+    } else {
+      this.product.id_categoria = this.categorySelected;
+      this.ProductsService.saveProduct(this.product).subscribe(responseProduct => { console.log(responseProduct) });
+    }
+
+    this.Router.navigate(['/products'])
+
   }
 
   editProduct() {
-    console.log(this.product)
+    if (this.fileCaptured != undefined) {
+      const inputElement = this.fileCaptured as HTMLInputElement;
+      if (inputElement.files && inputElement.files.length > 0) {
+        const file = inputElement.files[0];
+        this.ProductsService.savePhoto(file).subscribe(
+          responsePhoto => {
+            console.log(responsePhoto);
+          },
+          error => {
+            console.error('Error al subir la imagen:', error);
+          }
+        );
+      }
+    }
+
+    if (this.newCategory) {
+      this.category.nombre_Categoria = this.nameNewCategory.toUpperCase();
+      this.CategoriesService.saveCategory(this.category).subscribe(responseCategory => {
+        console.log(responseCategory)
+        this.product.id_categoria = this.categoriesList.length + 1;
+        this.ProductsService.editProduct(this.product).subscribe(responseProduct => { console.log(responseProduct) });
+      })
+    } else {
+      this.product.id_categoria = this.categorySelected;
+      this.ProductsService.editProduct(this.product).subscribe(responseProduct => { console.log(responseProduct) });
+    }
+
+    this.Router.navigate(['/products'])
   }
 }

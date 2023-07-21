@@ -3,7 +3,7 @@
     class="grid grid-rows-10 grid-cols-12 p-2 drop-shadow-2xl bg-red-950 mx-auto font-bold text-white gap-2 text-md w-3/6 mt-2 border-4 border-black rounded-md">
     <p class="text-2xl text-center row-span-1 col-span-12">Detalles del producto</p>
 
-    <img [src]="photoSelected || product.imagen" class="row-span-1 col-span-12 rounded-full mx-auto w-28 h-28">
+    <img [src]="photoSelected || 'http://localhost:3000/uploads/' + product.imagen" class="row-span-1 col-span-12 rounded-full mx-auto w-28 h-28">
 
     <p class="row-span-1 col-span-4">Nombre Producto: </p>
     <input type="text" class="row-span-1 col-span-8 text-black pl-2" [(ngModel)]="product.nombre_producto">

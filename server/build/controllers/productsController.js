@@ -39,8 +39,7 @@ class ProductsController {
     }
     create(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            //await pool.query("INSERT INTO productos set ?", [req.body]);
-            console.log("si entro");
+            yield database_1.default.query("INSERT INTO productos set ?", [req.body]);
             res.json({ text: "Product Saved" });
         });
     }
