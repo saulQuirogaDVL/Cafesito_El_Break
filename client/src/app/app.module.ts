@@ -16,6 +16,7 @@ import { ProductItemComponent } from './components/product-item/product-item.com
 import { MenuProductsComponent } from './components/menu-products/menu-products.component';
 import { FilterProductsModalComponent } from './components/filter-products-modal/filter-products-modal.component';
 import { ProductsFormComponent } from './components/products-form/products-form.component';
+import { MenuDetailsComponent } from './components/menu-details/menu-details.component';
 
 @NgModule({
   declarations: [
@@ -30,6 +31,7 @@ import { ProductsFormComponent } from './components/products-form/products-form.
     MenuProductsComponent,
     FilterProductsModalComponent,
     ProductsFormComponent,
+    MenuDetailsComponent,
   ],
   imports: [
     BrowserModule,

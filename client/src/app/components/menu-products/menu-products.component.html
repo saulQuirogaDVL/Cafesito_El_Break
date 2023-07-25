@@ -1,12 +1,26 @@
 <div class="grid grid-rows-12">
     <app-navigation class="row-span-1"></app-navigation>
     <div class="row-span-1 text-5xl font-bold text-center">Menu Productos</div>
-    <div class="row-span-1 grid grid-cols-10 gap-x-5 my-4">
+    <div class="row-span-1 grid grid-cols-10 gap-x-5 my-4 bg-amber-700 py-2 m-auto">
         <a class="rounded-lg bg-lime-400 col-span-2 grid grid-cols-5 mx-14" [routerLink]="['/products/add']">
             <p class="col-span-4 m-auto font-bold text-md">Nuevo Producto</p>
             <img class="w-4 h-4 col-span-1 my-auto" src="assets/IMG/addBtn.svg">
         </a>
-        <button class="text-2xl font-bold bg-red-500 text-center text-white w-28 h-8 border-2 border-black col-span-2"
+        <div class="col-span-3 grid grid-cols-5 m-auto">
+            <p class="col-span-1 text-2xl font-bold">Buscar:</p>
+            <input type="text" placeholder="ingrese un Id o Nombre" [(ngModel)]="inputSearch"
+                class="col-span-3 pl-2 font-bold h-8 rounded-lg mx-2">
+            <button class="col-span-1" (click)="findProducts()"><img src="./assets/IMG/buscar.svg" class="h-8 w-8">
+            </button>
+        </div>
+        <div class="col-span-3 grid grid-cols-6 font-bold text-xl">
+            <p class="col-span-1 my-auto">Habilitados: </p>
+            <input type="checkbox" class="col-span-2" [(ngModel)]="isEnabledSelected" (change)="filterByEnabled()">
+            <p class="col-span-1 my-auto -ml-6">Deshabilitados: </p>
+            <input type="checkbox" class="col-span-2" [(ngModel)]="isDisabledSelected" (change)="filterByEnabled()">
+        </div>
+        <button
+            class="text-2xl font-bold bg-red-500 text-center text-white w-28 h-8 border-2 border-black col-span-2 m-auto"
             (click)="openModal()">• • •</button>
     </div>
     <div class="row-span-8 grid grid-cols-8 grid-rows-8 gap-5">
